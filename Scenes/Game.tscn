@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://k1nb5bxtkq5"]
+
+[ext_resource type="PackedScene" uid="uid://b4nogu8koqpxa" path="res://Scenes/Player.tscn" id="1_gvr0k"]
+[ext_resource type="PackedScene" uid="uid://bkhg4xe6xbqfl" path="res://Scenes/World.tscn" id="2_wg42t"]
+
+[node name="Game" type="Node2D"]
+
+[node name="World" parent="." instance=ExtResource("2_wg42t")]
+
+[node name="Player" parent="." instance=ExtResource("1_gvr0k")]
+position = Vector2(-1, -18)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
