@@ -1,0 +1,150 @@
+[gd_scene load_steps=10 format=3 uid="uid://dcr45v42bh0oh"]
+
+[ext_resource type="Texture2D" uid="uid://cjfjh0e145mvm" path="res://assets/Character/character_foot_back.png" id="1_uwmp5"]
+[ext_resource type="Texture2D" uid="uid://cbun0i77y8j67" path="res://assets/Character/character_foot_front.png" id="2_ahqu1"]
+[ext_resource type="Texture2D" uid="uid://bmgxdcj8a64ab" path="res://assets/Character/character_head.png" id="3_7kyf6"]
+[ext_resource type="Texture2D" uid="uid://b0unesvf6popo" path="res://assets/Character/character_leg_back.png" id="4_ah6bn"]
+[ext_resource type="Texture2D" uid="uid://cgchhbqq6lttt" path="res://assets/Character/character_leg_front.png" id="5_mhgd1"]
+[ext_resource type="Texture2D" uid="uid://dvta0gnvtptgp" path="res://assets/Character/character_torso.png" id="6_ysuxo"]
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_27k52"]
+target_nodepath = NodePath("../../ik_target_front_leg")
+joint_one_bone_idx = 2
+joint_one_bone2d_node = NodePath("torso/leg_front")
+joint_two_bone_idx = 3
+joint_two_bone2d_node = NodePath("torso/leg_front/foot_front")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_br486"]
+target_nodepath = NodePath("../../ik_target_back_leg")
+joint_one_bone_idx = 4
+joint_one_bone2d_node = NodePath("torso/leg_back")
+joint_two_bone_idx = 5
+joint_two_bone2d_node = NodePath("torso/leg_back/foot_back")
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_3ivhu"]
+enabled = true
+modification_count = 2
+modifications/0 = SubResource("SkeletonModification2DTwoBoneIK_27k52")
+modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_br486")
+
+[node name="AnimatedPlayer" type="CharacterBody2D"]
+texture_filter = 1
+position = Vector2(1.28197, -116.605)
+scale = Vector2(10, 10)
+
+[node name="SkeletonContainer" type="Node" parent="."]
+
+[node name="Parts" type="Node" parent="SkeletonContainer"]
+
+[node name="foot_back" type="Sprite2D" parent="SkeletonContainer/Parts"]
+texture_filter = 1
+position = Vector2(20.8609, -0.240652)
+rotation = 1.50656
+scale = Vector2(9.99892, 9.99892)
+texture = ExtResource("1_uwmp5")
+
+[node name="foot_front" type="Sprite2D" parent="SkeletonContainer/Parts"]
+texture_filter = 1
+position = Vector2(-39.4887, -7.48049)
+rotation = 0.257315
+scale = Vector2(9.99864, 9.99864)
+texture = ExtResource("2_ahqu1")
+
+[node name="head" type="Sprite2D" parent="SkeletonContainer/Parts"]
+texture_filter = 1
+position = Vector2(1, -311)
+scale = Vector2(10, 10)
+texture = ExtResource("3_7kyf6")
+
+[node name="leg_back" type="Sprite2D" parent="SkeletonContainer/Parts"]
+texture_filter = 1
+position = Vector2(17.5215, -58.552)
+rotation = -0.0254235
+scale = Vector2(9.99908, 9.99908)
+texture = ExtResource("4_ah6bn")
+
+[node name="leg_front" type="Sprite2D" parent="SkeletonContainer/Parts"]
+texture_filter = 1
+position = Vector2(-26.8191, -59.9892)
+rotation = 0.257099
+scale = Vector2(9.99874, 9.99874)
+texture = ExtResource("5_mhgd1")
+
+[node name="torso" type="Sprite2D" parent="SkeletonContainer/Parts"]
+texture_filter = 1
+position = Vector2(5, -151)
+scale = Vector2(10, 10)
+texture = ExtResource("6_ysuxo")
+
+[node name="Skeleton2D" type="Skeleton2D" parent="SkeletonContainer"]
+position = Vector2(1, 114)
+modification_stack = SubResource("SkeletonModificationStack2D_3ivhu")
+
+[node name="torso" type="Bone2D" parent="SkeletonContainer/Skeleton2D"]
+position = Vector2(0, -253)
+rest = Transform2D(1, 0, 0, 1, 0, -253)
+
+[node name="head" type="Bone2D" parent="SkeletonContainer/Skeleton2D/torso"]
+position = Vector2(-1, -165)
+rest = Transform2D(1, 0, 0, 1, -1, -165)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="SkeletonContainer/Skeleton2D/torso/head"]
+position = Vector2(1, -7)
+scale = Vector2(10, 10)
+remote_path = NodePath("../../../../Parts/head")
+
+[node name="leg_front" type="Bone2D" parent="SkeletonContainer/Skeleton2D/torso"]
+position = Vector2(-14, 33)
+rotation = 0.00696853
+scale = Vector2(0.999882, 0.999882)
+rest = Transform2D(1, 0, 0, 1, -14, 32)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="foot_front" type="Bone2D" parent="SkeletonContainer/Skeleton2D/torso/leg_front"]
+position = Vector2(2.28146, 108.104)
+rotation = 2.40748
+scale = Vector2(0.999994, 0.999994)
+rest = Transform2D(1, 0, 0, 1, -2, 103)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="SkeletonContainer/Skeleton2D/torso/leg_front/foot_front"]
+position = Vector2(-6.01787, 2.96582)
+rotation = -1.58999
+scale = Vector2(10, 10)
+remote_path = NodePath("../../../../../Parts/foot_front")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="SkeletonContainer/Skeleton2D/torso/leg_front"]
+position = Vector2(-1.66566, 48.0184)
+scale = Vector2(10, 10)
+remote_path = NodePath("../../../../Parts/leg_front")
+
+[node name="leg_back" type="Bone2D" parent="SkeletonContainer/Skeleton2D/torso"]
+position = Vector2(12, 32)
+rest = Transform2D(1, 0, 0, 1, 12, 32)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="foot_back" type="Bone2D" parent="SkeletonContainer/Skeleton2D/torso/leg_back"]
+position = Vector2(3.39797, 98.2524)
+rest = Transform2D(1, 0, 0, 1, 4, 103)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="SkeletonContainer/Skeleton2D/torso/leg_back/foot_back"]
+position = Vector2(8.74357, -1.40877)
+scale = Vector2(10, 10)
+remote_path = NodePath("../../../../../Parts/foot_back")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="SkeletonContainer/Skeleton2D/torso/leg_back"]
+position = Vector2(3.28872, 48.5518)
+scale = Vector2(10, 10)
+remote_path = NodePath("../../../../Parts/leg_back")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="SkeletonContainer/Skeleton2D"]
+position = Vector2(4, -265)
+scale = Vector2(10, 10)
+remote_path = NodePath("../../Parts/torso")
+
+[node name="ik_target_front_leg" type="Node2D" parent="."]
+position = Vector2(-5.6282, 15.8605)
+
+[node name="ik_target_back_leg" type="Node2D" parent="."]
+position = Vector2(2.2718, 18.0605)
