@@ -1,15 +1,16 @@
 extends CharacterBody2D
 
-
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -400.0
 
 @export var STAMINA = 100.0
 @export var MAX_STAMINA = 100.0
-
 @export var REGEN_FACTOR = 10.0
 @export var REGEN_DELAY = 1.0 # in seconds
 
+@onready var animated_sprite := $AnimatedSprite2D
+
+var current_dash_trail: DashTrail
 var is_dashing = false
 var has_airjumped = false
 
@@ -18,28 +19,27 @@ var MIN_ZOOM = 0.75
 
 var attempt_regen:= Timer.new()
 
-var current_dash_trail: DashTrail
-
 
 func _ready() -> void:
 	add_child(attempt_regen)
 	attempt_regen.wait_time = REGEN_DELAY
 	attempt_regen.one_shot = false
 	attempt_regen.connect("timeout", attempt_regen_timeout)
-	
 	attempt_regen.start()
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept"):
+	# Handle jump
+	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = JUMP_VELOCITY	
+			animated_sprite.play("jump")
 		else:
 			_airjump()
+			animated_sprite.play("jump")
 		
 	if is_on_floor() and has_airjumped:
 		print("DEBUG: has_airjumped set to false")
@@ -48,9 +48,31 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("dash"):
 		_dash()
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("move_left", "move_right")
+	
+	# Flip sprite, regarding direction
+	if direction > 0:
+		animated_sprite.flip_h = false
+	elif direction < 0:
+		animated_sprite.flip_h = true
+	
+	# Set animations
+	if is_on_floor():
+		
+		if direction == 0:
+			if Input.is_action_just_pressed("jump"):
+				animated_sprite.play("jump")
+			else:
+				animated_sprite.play("idle")
+		else:
+			if Input.is_action_just_pressed("jump"):
+				animated_sprite.play("jump")
+			else:
+				animated_sprite.play("run")
+	else:
+		if velocity.y > 0:
+			animated_sprite.play("fall")
+	
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -110,12 +132,9 @@ func attempt_regen_timeout() -> void:
 	else:
 		STAMINA += REGEN_FACTOR
 
-	
-	
 func _process(delta: float) -> void:
 	zoom()
 	
-
 func zoom() -> void:
 	
 	if Input.is_action_just_released("zoom_in"):

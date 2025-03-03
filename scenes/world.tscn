@@ -1,6 +1,5 @@
-[gd_scene load_steps=19 format=4 uid="uid://budpfjeqqfglg"]
+[gd_scene load_steps=18 format=4 uid="uid://budpfjeqqfglg"]
 
-[ext_resource type="Script" path="res://scripts/world.gd" id="1_6hiyj"]
 [ext_resource type="Texture2D" uid="uid://d16wfki15x0ip" path="res://icon.svg" id="1_tk768"]
 [ext_resource type="Texture2D" uid="uid://dg3mjjpfp2574" path="res://assets/TileSet/earth.png" id="1_x3a81"]
 [ext_resource type="PackedScene" uid="uid://dfsrkomqhr5hm" path="res://scenes/player.tscn" id="2_qtwye"]
@@ -43,7 +42,6 @@ sources/1 = SubResource("TileSetAtlasSource_fkto5")
 sources/2 = SubResource("TileSetAtlasSource_jl2og")
 
 [node name="world" type="Node"]
-script = ExtResource("1_6hiyj")
 metadata/_edit_vertical_guides_ = [-12541.0]
 
 [node name="TileMapLayer_Earth" type="TileMapLayer" parent="."]
@@ -72,6 +70,7 @@ REGEN_DELAY = 1.0
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(0, 2)
 zoom = Vector2(0.4, 0.4)
+process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpb66a12laa75"
-path="res://.godot/imported/character_foot_front.png-ec7c044d1108806fb1806158e6130b0a.ctex"
+uid="uid://x768o7n1x0w7"
+path="res://.godot/imported/character_animated_jump1.png-71d196aec945c2fe0dbb5be651e10aa4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Character/character_foot_front.png"
-dest_files=["res://.godot/imported/character_foot_front.png-ec7c044d1108806fb1806158e6130b0a.ctex"]
+source_file="res://assets/Character/character_animated_jump1.png"
+dest_files=["res://.godot/imported/character_animated_jump1.png-71d196aec945c2fe0dbb5be651e10aa4.ctex"]
 
 [params]
 

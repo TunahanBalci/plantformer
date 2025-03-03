@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7hc5y0u2v1hq"
-path="res://.godot/imported/character_torso_sideways.png-18f334ed20c2358c2fdee53ae0c243c4.ctex"
+uid="uid://dsocvc4fvte24"
+path="res://.godot/imported/character_animated_idle5.png-0381303b4cb533f8d75668ed6eaffae3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Character/character_torso_sideways.png"
-dest_files=["res://.godot/imported/character_torso_sideways.png-18f334ed20c2358c2fdee53ae0c243c4.ctex"]
+source_file="res://assets/Character/character_animated_idle5.png"
+dest_files=["res://.godot/imported/character_animated_idle5.png-0381303b4cb533f8d75668ed6eaffae3.ctex"]
 
 [params]
 

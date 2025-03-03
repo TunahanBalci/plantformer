@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3tf5cktp25tn"
-path="res://.godot/imported/background.png-7d80b9ef870e37cf04dad4c912dfd266.ctex"
+uid="uid://f5fdu7lp6fl7"
+path="res://.godot/imported/character_animated_fall2.png-071deeaa2a85be089d07dd19afb6ef0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Background/background.png"
-dest_files=["res://.godot/imported/background.png-7d80b9ef870e37cf04dad4c912dfd266.ctex"]
+source_file="res://assets/Character/character_animated_fall2.png"
+dest_files=["res://.godot/imported/character_animated_fall2.png-071deeaa2a85be089d07dd19afb6ef0d.ctex"]
 
 [params]
 
