@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl1hhx6tyirnd"
-path="res://.godot/imported/character_foot_back.png-b2216fb22a4f403d65e62932d6694955.ctex"
+uid="uid://fd8shckmallt"
+path="res://.godot/imported/forest_sky.png-be3d4b6ff7b27e87026a1462a32751dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Character/character_foot_back.png"
-dest_files=["res://.godot/imported/character_foot_back.png-b2216fb22a4f403d65e62932d6694955.ctex"]
+source_file="res://assets/Background/forest_sky.png"
+dest_files=["res://.godot/imported/forest_sky.png-be3d4b6ff7b27e87026a1462a32751dc.ctex"]
 
 [params]
 

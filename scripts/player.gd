@@ -13,7 +13,13 @@ extends CharacterBody2D
 var is_dashing = false
 var has_airjumped = false
 
+var MAX_ZOOM = 4.0
+var MIN_ZOOM = 0.75
+
 var attempt_regen:= Timer.new()
+
+var current_dash_trail: DashTrail
+
 
 func _ready() -> void:
 	add_child(attempt_regen)
@@ -59,6 +65,7 @@ func _dash() -> void:
 		
 		if STAMINA >= 40:
 			print("DEBUG: Dash timer started")
+			make_trail()
 			is_dashing = true
 			var originalSpeed = SPEED
 			SPEED = SPEED * 20
@@ -67,7 +74,9 @@ func _dash() -> void:
 			await get_tree().create_timer(0.05).timeout
 			SPEED = originalSpeed
 			is_dashing = false
-			
+			if (current_dash_trail):
+				current_dash_trail.stop()
+				current_dash_trail = null
 			print("DEBUG: Dash timer stopped")
 		
 		else:  
@@ -108,10 +117,24 @@ func _process(delta: float) -> void:
 	
 
 func zoom() -> void:
+	
 	if Input.is_action_just_released("zoom_in"):
-		if ($Camera2D.zoom.x >= 0.25):
+		if ($Camera2D.zoom.x >= MAX_ZOOM):
+			print("INFO: Attempted zoom_in, max zoom reached")
+		else:
 			$Camera2D.zoom.x += 0.25
 			$Camera2D.zoom.y = $Camera2D.zoom.x
+
 	if Input.is_action_just_released("zoom_out"):
-		$Camera2D.zoom.x -= 0.25
-		$Camera2D.zoom.y = $Camera2D.zoom.x
+		if ($Camera2D.zoom.x <= MIN_ZOOM):
+			print("INFO: Attempted zoom_out, min zoom reached")
+		else:
+			$Camera2D.zoom.x -= 0.25
+			$Camera2D.zoom.y = $Camera2D.zoom.x
+
+func make_trail() -> void:
+	if current_dash_trail:
+		current_dash_trail.stop()
+	current_dash_trail = DashTrail.create()
+	add_child(current_dash_trail)
+	
