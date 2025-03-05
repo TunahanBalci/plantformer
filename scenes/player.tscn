@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dfsrkomqhr5hm"]
+[gd_scene load_steps=23 format=3 uid="uid://dfsrkomqhr5hm"]
 
 [ext_resource type="Texture2D" uid="uid://dqxglcix305mu" path="res://assets/Character/character_animated_fall1.png" id="1_wfah8"]
 [ext_resource type="Texture2D" uid="uid://f5fdu7lp6fl7" path="res://assets/Character/character_animated_fall2.png" id="2_3635h"]
@@ -106,24 +106,20 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nuof"]
-size = Vector2(18, 18)
-
 [node name="player" type="CharacterBody2D"]
+collision_mask = 3
 script = SubResource("GDScript_orbka")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3ak3x")
-animation = &"run"
-
-[node name="PlayerArea" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
-shape = SubResource("RectangleShape2D_3nuof")
+animation = &"idle"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(1, 0)
+scale = Vector2(4, 4)
 polygon = PackedVector2Array(-2, -10, 3, -10, 5, -6, 5, -1, 5, 3, 4, 7, 0, 8, -4, 7, -5, 3, -5, -2, -5, -6)
+
+[node name="seed_position" type="Marker2D" parent="."]
+position = Vector2(0, -68)

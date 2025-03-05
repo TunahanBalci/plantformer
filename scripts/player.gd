@@ -19,6 +19,10 @@ var MIN_ZOOM = 0.75
 
 var attempt_regen:= Timer.new()
 
+var can_pick_up := true
+
+@export var direction = 1.1
+
 
 func _ready() -> void:
 	add_child(attempt_regen)
@@ -48,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("dash"):
 		_dash()
 
-	var direction := Input.get_axis("move_left", "move_right")
+	direction = Input.get_axis("move_left", "move_right")
 	
 	# Flip sprite, regarding direction
 	if direction > 0:
